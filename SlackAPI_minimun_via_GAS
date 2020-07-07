@@ -1,0 +1,22 @@
+function myFunction() {
+  //投稿内容bodyの中身
+  body = body + "Hogehoge";
+  
+  //SlackAppで作ったSlack Incoming WebhooksのURLを指定しておく。
+  var url = "https://hooks.slack.com/services/*************/****************/***********************";
+  
+  //{"text":body}の形のjsonを作る
+  var payload = {
+    "text": body,
+  };
+  
+  //incoming webhooksに{"text":body}の形のjsonをPOSTする準備
+  var options = {
+    "method" : "POST",
+    "headers": {"Content-type": "application/json"},
+    "payload": JSON.stringify(payload)
+  };
+  
+  //実際にPOSTする
+  UrlFetchApp.fetch(url, options); 
+}
